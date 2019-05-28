@@ -1,0 +1,31 @@
+This document contains the high level design of the google analytic type system.
+
+Components involved -
+1. REST api framework - will be hit from website and will do all the required processing
+2. Apache kafka - to have the analytic processing in an async flow
+3. Apache spark - to consume events from kafka (which have all the relevant information of visitors/customers) and write to hbase. In short we are using this for real time processing of the data
+4. Apache HBase - to store all the data and handle billions of reads and writes
+5. Redis cluster for caching - to handle billions of reads by merchants
+6. Phoenix wrapper - for querying from hbase with sql like queries
+
+Requirements -
+1. billion writes - hbase will handle
+2. reads with time-series patterns - we will store all the data into hbase along with timestamp for
+ time series related queries and redis with hbase will be used for handling read traffic
+3. provide metrics to customers - spark will do all the processing and give insights to merchants for queries like -
+
+ - how many visitors in last x hours
+ - how many times particular visitor visited the website in last x hours
+ - what is the average traffic (requests per min)
+ - visitors from same city
+ - international visitors
+ - how many visitors converted to customers etc.
+
+ Or the query can also be done using some standalone backend service with hbase read access.
+
+4. run with minimum downtime - have distributed systems to cater to this requirement. Kafka, spark, hbase are all
+  distributed systems.
+
+5. ability to process historical data - since we have data in an organised form in hbase, we can query that data any time
+  and run ML algorithms and other processing logics on that data. Further to boost hbase performance in terms of querying,
+  we use indexing and redis as caching layer.
