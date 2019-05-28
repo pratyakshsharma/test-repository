@@ -1,13 +1,9 @@
 package com.design;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import kafka.serializer.StringDecoder;
 import lombok.Data;
 import org.apache.spark.SparkConf;
 import org.apache.spark.streaming.Durations;
-import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
-import org.apache.spark.streaming.kafka.KafkaUtils;
 
 import java.util.*;
 

@@ -11,6 +11,7 @@ public class BackendResource {
     }
 
 
+    @POST
     public Response executeBackend() {
 
         String userId = "dummy_user_id";
