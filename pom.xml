@@ -10,7 +10,7 @@
 
     <properties>
         <spark-streaming-kafka_2.10.version>1.6.1</spark-streaming-kafka_2.10.version>
-        <spark-core_2.10.version>1.6.1</spark-core_2.10.version>
+        <spark-core_2.10.version>2.2.3</spark-core_2.10.version>
         <redisson.version>2.2.11</redisson.version>
     </properties>
 
